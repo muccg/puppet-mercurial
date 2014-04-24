@@ -4,7 +4,7 @@ define mercurial::hgrc(
   $username,
   $password,
   $owner,
-  $group = $owner
+  $group = $owner,
   $hgrc = $title,
   ) {
 
