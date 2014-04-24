@@ -7,17 +7,17 @@ define mercurial::clone(
 
   require mercurial
 
-  exec { "hg clone $hgroot -u $revision $projectname":
-    command   => "${mercurial::params::bin} clone $hgroot -u $revision $projectname",
+  exec { "hg clone ${hgroot} -u ${revision} ${projectname}":
+    command   => "${mercurial::params::bin} clone ${hgroot} -u ${revision} ${projectname}",
     cwd       => $pwd,
     timeout   => $mercurial::params::timeout,
     logoutput => true,
-    unless    => "/usr/bin/stat $pwd/$projectname";
+    unless    => "/usr/bin/stat ${pwd}/${projectname}";
   } ->
 
-  exec { "hg pull -u $revision in $pwd/$projectname":
-    command   => "${mercurial::params::bin} pull -u -r $revision",
-    cwd       => "$pwd/$projectname",
+  exec { "hg pull -u ${revision} in ${pwd}/${projectname}":
+    command   => "${mercurial::params::bin} pull -u -r ${revision}",
+    cwd       => "${pwd}/${projectname}",
     logoutput => true,
     timeout   => $mercurial::params::timeout,
   }

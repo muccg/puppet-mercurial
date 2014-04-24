@@ -8,10 +8,10 @@ define mercurial::hgrc(
   $hgrc = $title,
   ) {
 
-  file { "${hgrc}":
+  file { $hgrc:
     content => template('mercurial/user.hgrc.erb'),
-    owner => $owner,
-    group => $group,
-    mode => '0400',
+    owner   => $owner,
+    group   => $group,
+    mode    => '0400',
   }
 }
